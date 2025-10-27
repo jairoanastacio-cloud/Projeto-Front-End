@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>MemeWiki - [Nome do Meme]</title>
+        <style>
+            body {
+                margin: 0;
+                font-family: Arial, sans-serif;
+                background: #a6b7d3 url(./fundo.jpeg) repeat;
+                background-size: cover;
+                color: #000;
+            }
+
+            header {
+                background: linear-gradient(90deg, #000, #29296b);
+                color: white;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px 30px;
+            }
+
+            .logo {
+                font-weight: bold;
+                font-size: 3.4em;
+            }
+
+            .logo span {
+                color: #0080ff;
+            }
+
+            .search-container input {
+                border: none;
+                padding: 10px 15px;
+                border-radius: 20px;
+            }
+
+            .search-container button {
+                background: #0080ff;
+                border: none;
+                color: white;
+                border-radius: 20px;
+                padding: 10px 15px;
+                cursor: pointer;
+                margin-left: 10px;
+            }
+
+            .search-container button:hover {
+                background-color: #3737a1;
+            }
+
+            .menu-btn {
+                font-size: 20px;
+                cursor: pointer;
+                padding: 10px 15px;
+                background-color: #222;
+                color: #fff;
+                border: none;
+            }
+
+            .search-container .menu-btn {
+                background-color: #000;
+            }
+
+            .sidebar {
+                height: 100%;
+                width: 0;
+                position: fixed;
+                top: 0;
+                left: 0;
+                background-color: #222;
+                overflow-x: hidden;
+                transition: 0.3s;
+                padding-top: 60px;
+                box-sizing: border-box;
+            }
+
+            .sidebar ul {
+                list-style: none;
+                padding: 0;
+            }
+
+            .sidebar ul li {
+                padding: 10px 20px;
+            }
+
+            .sidebar ul li a {
+                color: #fff;
+                text-decoration: none;
+                font-weight: bold;
+                display: block;
+            }
+
+            .sidebar ul li a:hover {
+                color: #ffcc00;
+            }
+
+            .close-btn {
+                position: absolute;
+                top: 10px;
+                right: 20px;
+                font-size: 30px;
+                text-decoration: none;
+                color: #fff;
+            }
+
+            .content {
+                padding: 20px;
+                transition: margin-left 0.3s;
+                max-width: 900px;
+                margin: auto;
+                text-align: center;
+            }
+
+            .login-container {
+                background-color: #ffffff;
+                padding: 30px 40px;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                width: 100%;
+                max-width: 350px;
+            }
+
+            .login-container h2 {
+                text-align: center;
+                margin-bottom: 25px;
+            }
+
+            .login-container input[type="text"],
+            .login-container input[type="password"] {
+                width: 100%;
+                padding: 12px;
+                margin: 10px 0;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+
+            .login-container input[type="submit"] {
+                width: 100%;
+                padding: 12px;
+                background-color: #007bff;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 16px;
+            }
+
+            .login-container input[type="submit"]:hover {
+                background-color: #0056b3;
+            }
+
+            .login-container .links {
+                margin-top: 15px;
+                text-align: center;
+                font-size: 14px;
+            }
+
+            .login-container .links a {
+                color: #007bff;
+                text-decoration: none;
+            }
+
+            .login-container .links a:hover {
+                text-decoration: underline;
+            }
+            .login-wrapper {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: calc(100vh - 60px);
+                padding: 20px;
+            }
+            .logo:hover {
+                cursor: pointer;
+                text-decoration: none;
+            }
+            .logo a {
+                text-decoration: none;
+                color: white;
+            }
+            .logo a:hover {
+                text-decoration: none;
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="logo">
+                <a href="ewiki.html"> Meme<span>Wiki</span> </a>
+            </div>
+            <div class="search-container">
+                <input type="text" placeholder="Pesquisar" />
+                <button class="menu-btn" onclick="toggleMenu()">☰ Menu</button>
+            </div>
+        </header>
+
+        <div id="sidebar" class="sidebar">
+            <a
+                href="javascript:void(0)"
+                class="close-btn"
+                onclick="toggleMenu()"
+                >×</a
+            >
+            <ul>
+                <li><a href="ewiki.html">Início</a></li>
+            </ul>
+        </div>
+        <div class="login-wrapper">
+            <div class="login-container">
+                <h2>Login</h2>
+                <form action="dashboard.html" method="post">
+                    <input
+                        type="text"
+                        name="usuario"
+                        placeholder="Usuário"
+                        required
+                    />
+                    <input
+                        type="password"
+                        name="senha"
+                        placeholder="Senha"
+                        required
+                    />
+                    <input type="submit" value="Login" />
+                </form>
+                <div class="links">
+                    <p><a href="#">Esqueci minha senha</a></p>
+                    <p><a href="#">Criar nova conta</a></p>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function toggleMenu() {
+                const sidebar = document.getElementById("sidebar");
+                const content = document.querySelector(".content");
+
+                if (sidebar.style.width === "250px") {
+                    sidebar.style.width = "0";
+                    content.style.transform = "translateX(0)";
+                } else {
+                    sidebar.style.width = "250px";
+                    content.style.transform = "translateX(250px)";
+                }
+            }
+        </script>
+    </body>
+</html>
